@@ -169,6 +169,8 @@ class IrcBot extends Adapter
       debug:    process.env.HUBOT_IRC_DEBUG?
       usessl:   process.env.HUBOT_IRC_USESSL?
       userName: process.env.HUBOT_IRC_USERNAME
+      saslUserName: process.env.HUBOT_IRC_SASLUSERNAME
+      usesasl:  process.env.HUBOT_IRC_USESASL
 
     client_options =
       userName: options.userName
@@ -178,6 +180,8 @@ class IrcBot extends Adapter
       port: options.port
       stripColors: true
       secure: options.usessl
+      sasl: options.usesasl
+      saslUserName: options.saslUserName
       selfSigned: options.fakessl
       certExpired: options.certExpired
       floodProtection: @unfloodProtection(options.unflood),
@@ -325,7 +329,7 @@ class IrcBot extends Adapter
         logger.info('Ignoring user: %s', from)
         # we'll ignore this message if it's from someone we want to ignore
         return
-      
+
       if not process.env.HUBOT_IRC_PRIVATE or process.env.HUBOT_IRC_IGNOREINVITE
         bot.join channel
 

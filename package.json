@@ -23,7 +23,7 @@
     "test": "grunt"
   },
   "dependencies": {
-    "irc": "git+https://github.com/nandub/node-irc.git",
+    "irc": "git://github.com/martinb3/node-irc.git#0.3.x",
     "log": "1.4.0"
   },
   "devDependencies": {
